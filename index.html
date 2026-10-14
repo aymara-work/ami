@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Examen Oral de Análisis I</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: banda institucional verde pizarra + papel cuadriculado; vista "Proyecto" en columna de lectura y vista "Mesa de examen" con la tarjeta impresa a la izquierda y el panel del tribunal a la derecha. */
+:root{
+  --paper:#F7F8F5; --grid:#E6EBE6; --card:#FFFFFF; --panel:#F0F3EF; --sunk:#E7ECE8;
+  --ink:#1A1D1B; --ink-2:#3F4744; --muted:#6B7570; --faint:#98A29D; --rule:#D3DAD5; --rule-2:#B9C3BD;
+  --piz:#1E4D40; --piz-ink:#FFFFFF; --piz-soft:#DCE8E2; --rojo:#B3261E; --rojo-soft:#F6E3E1; --focus:#2C7A62;
+  --e1:#2F6F73; --e2:#4B5BA6; --e3:#A8740F; --e4:#5E7F22; --e5:#6F4A9A; --e6:#9A4D6C; --e7:#4F5B66;
+  --c:var(--piz); --c-soft:var(--piz-soft);
+  --serif:"Spectral",Georgia,serif; --sans:"Public Sans",Arial,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0F1513; --grid:#18201D; --card:#151C19; --panel:#18211E; --sunk:#1D2723;
+  --ink:#E6EBE8; --ink-2:#BCC6C1; --muted:#8C9792; --faint:#66716C; --rule:#26302C; --rule-2:#33403A;
+  --piz:#0E2A22; --piz-ink:#E6EBE8; --piz-soft:#1E3A31; --rojo:#E8837B; --rojo-soft:#2E1A18; --focus:#7CC7AC;
+  --e1:#79BFC3; --e2:#9AA7E6; --e3:#E2B65A; --e4:#A7CB6A; --e5:#B99BE0; --e6:#DE98B4; --e7:#A9B4BE;
+  color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --paper:#0F1513; --grid:#18201D; --card:#151C19; --panel:#18211E; --sunk:#1D2723;
+  --ink:#E6EBE8; --ink-2:#BCC6C1; --muted:#8C9792; --faint:#66716C; --rule:#26302C; --rule-2:#33403A;
+  --piz:#0E2A22; --piz-ink:#E6EBE8; --piz-soft:#1E3A31; --rojo:#E8837B; --rojo-soft:#2E1A18; --focus:#7CC7AC;
+  --e1:#79BFC3; --e2:#9AA7E6; --e3:#E2B65A; --e4:#A7CB6A; --e5:#B99BE0; --e6:#DE98B4; --e7:#A9B4BE;
+  color-scheme:dark; }
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0; background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:22px 22px; color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55}
+.wrap{max-width:1360px; margin:0 auto; padding-inline:22px}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+button{font:inherit; cursor:pointer}
+[data-g="1"]{--c:var(--e1)} [data-g="2"]{--c:var(--e2)} [data-g="3"]{--c:var(--e3)} [data-g="4"]{--c:var(--e4)}
+[data-g="5"]{--c:var(--e5)} [data-g="6"]{--c:var(--e6)} [data-g="7"]{--c:var(--e7)} [data-g="R"]{--c:var(--rojo)}
+
+/* banda */
+.band{background:var(--piz); color:var(--piz-ink)}
+.band .wrap{padding-block:20px 0; display:grid; gap:6px}
+.inst{font-size:12px; letter-spacing:.02em; opacity:.85}
+.band h1{font-family:var(--serif); font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.1; margin:4px 0 0; text-wrap:balance}
+.band h1 small{display:block; font-family:var(--sans); font-size:14px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; opacity:.8; margin-bottom:4px}
+.views{display:flex; gap:4px; margin-top:16px}
+.views button{border:0; background:transparent; color:var(--piz-ink); opacity:.75; padding:10px 16px 12px; border-radius:8px 8px 0 0; font-weight:600; font-size:14px}
+.views button[aria-selected="true"]{background:var(--paper); color:var(--ink); opacity:1}
+
+main.wrap{padding-block:28px 60px}
+
+/* proyecto */
+.proj{max-width:860px; display:grid; gap:34px}
+.lede{font-family:var(--serif); font-size:clamp(19px,2.4vw,22px); line-height:1.5; margin:0; background:var(--card); padding:22px 24px; border-left:5px solid var(--piz); text-wrap:pretty}
+.sec h2{font-family:var(--sans); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--piz); margin:0 0 12px}
+:root[data-theme="dark"] .sec h2{color:var(--focus)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sec h2{color:var(--focus)}}
+.sec p{margin:0 0 12px; color:var(--ink-2); max-width:68ch}
+.boxes{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+.box{background:var(--card); border:1px solid var(--rule); padding:14px 16px; min-width:0}
+.box b{display:block; font-size:14px; margin-bottom:4px}
+.box span{font-size:13.5px; color:var(--ink-2)}
+.timeline{display:flex; height:30px; border-radius:6px; overflow:hidden; margin-bottom:10px; border:1px solid var(--rule)}
+.timeline i{display:flex; align-items:center; justify-content:center; font-style:normal; font-size:11.5px; font-weight:600; color:#fff; background:var(--piz); border-right:2px solid var(--card)}
+.timeline i:nth-child(2){background:var(--e1)} .timeline i:nth-child(3){background:var(--e4)}
+.steps-list{list-style:none; padding:0; margin:0; display:grid; gap:6px}
+.steps-list li{display:grid; grid-template-columns:34px 1fr auto; gap:12px; background:var(--card); border:1px solid var(--rule); padding:10px 14px; align-items:baseline}
+.steps-list .n{font-family:var(--mono); font-weight:700; color:var(--piz)}
+:root[data-theme="dark"] .steps-list .n{color:var(--focus)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .steps-list .n{color:var(--focus)}}
+.steps-list b{display:block; font-size:14px}
+.steps-list span{font-size:13.5px; color:var(--ink-2)}
+.steps-list .d{font-family:var(--mono); font-size:12px; color:var(--muted); white-space:nowrap}
+.comp{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:8px}
+.comp div{background:var(--card); border:1px solid var(--rule); border-top:4px solid var(--c); padding:10px 12px; min-width:0}
+.comp small{display:block; font-family:var(--mono); font-size:11px; color:var(--c); font-weight:700}
+.comp b{font-size:13.5px; font-weight:600; display:block; line-height:1.3}
+.comp em{font-style:normal; font-size:12px; color:var(--muted)}
+.rubt{width:100%; border-collapse:collapse; background:var(--card); font-size:13.5px}
+.rubt th,.rubt td{border:1px solid var(--rule); padding:8px 10px; text-align:left}
+.rubt th{background:var(--sunk); font-size:12px; color:var(--ink-2)}
+.rubt td.n{font-family:var(--mono); text-align:center; font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+.cta{display:inline-flex; align-items:center; gap:8px; background:var(--piz); color:var(--piz-ink); border:0; padding:12px 20px; border-radius:6px; font-weight:600}
+.note{font-size:13px; color:var(--muted); max-width:70ch}
+
+/* mesa */
+.bar{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:18px}
+.seg{display:inline-flex; background:var(--card); border:1px solid var(--rule-2); border-radius:8px; padding:3px}
+.seg button{border:0; background:transparent; padding:7px 12px; border-radius:6px; font-size:13.5px; color:var(--ink-2); font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--rojo); color:#fff}
+.btn{border:1px solid var(--rule-2); background:var(--card); color:var(--ink); padding:9px 14px; border-radius:8px; font-weight:600; font-size:13.5px}
+.btn.primary{background:var(--piz); color:var(--piz-ink); border-color:var(--piz)}
+.btn[aria-pressed="true"]{background:var(--piz-soft)}
+.bar .sp{flex:1}
+.pool{font-size:12.5px; color:var(--muted)}
+.banco{background:var(--card); border:1px solid var(--rule); padding:16px; margin-bottom:18px; display:grid; gap:14px}
+.grp h3{margin:0 0 6px; font-size:12.5px; font-weight:700; color:var(--c); letter-spacing:.04em}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{border:1px solid var(--rule); background:var(--paper); padding:5px 9px; border-radius:6px; font-size:12.5px; color:var(--ink); display:inline-flex; gap:7px; align-items:baseline; max-width:100%}
+.chip code{font-family:var(--mono); font-weight:700; color:var(--c); font-size:11.5px}
+.chip[aria-current="true"]{background:var(--c); color:#fff; border-color:var(--c)} .chip[aria-current="true"] code{color:#fff}
+.mesa{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:22px; align-items:start}
+.lab{font-size:11.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 8px}
+
+/* tarjeta impresa */
+.tcard{display:flex; background:var(--card); border:1px solid var(--rule-2); box-shadow:0 10px 30px -18px rgba(0,0,0,.35); min-width:0}
+.tcard.roja{border:5px solid var(--rojo)}
+.tcard .side{width:34px; background:var(--c); color:#fff; display:flex; align-items:center; justify-content:center; flex:none}
+.tcard .side span{transform:rotate(-90deg); white-space:nowrap; font-weight:700; font-size:12px; letter-spacing:.25em}
+.tcard .body{padding:18px 20px; min-width:0; flex:1}
+.tcard .top{display:flex; gap:12px; align-items:center; border-bottom:2px solid var(--c); padding-bottom:10px; margin-bottom:12px}
+.tcard .code{font-family:var(--mono); font-size:26px; font-weight:700; color:var(--c); line-height:1}
+.tcard .meta{font-size:12px; color:var(--ink-2); line-height:1.35; font-weight:600}
+.tcard .meta em{font-style:normal; font-weight:400; color:var(--muted)}
+.tcard h2{font-family:var(--serif); font-size:clamp(20px,2.3vw,24px); margin:0 0 10px; line-height:1.2; text-wrap:balance}
+.tcard .cons{font-family:var(--serif); font-size:16px; line-height:1.6; margin:0 0 14px}
+.tcard .teo{border:1.5px solid var(--c); border-radius:6px; padding:10px 12px; margin-bottom:12px; font-family:var(--serif); font-size:15px; line-height:1.5}
+.tcard .teo small{display:block; font-family:var(--sans); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--c); font-weight:700; margin-bottom:4px}
+.tcard .temas{font-size:12px; color:var(--muted)}
+
+.crono{margin-top:18px; background:var(--card); border:1px solid var(--rule); padding:14px 16px}
+.crono ol{list-style:none; padding:0; margin:0 0 10px; display:grid; gap:4px}
+.crono li button{width:100%; display:grid; grid-template-columns:24px 1fr auto; gap:10px; border:1px solid transparent; background:transparent; padding:7px 8px; text-align:left; color:var(--ink); border-radius:6px; align-items:baseline}
+.crono li button[aria-expanded="true"]{background:var(--sunk); border-color:var(--rule)}
+.crono .n{font-family:var(--mono); font-weight:700; color:var(--muted)}
+.crono .t{font-size:14px; font-weight:600}
+.crono .dd{font-family:var(--mono); font-size:11.5px; color:var(--muted)}
+.crono .det{grid-column:2/-1; font-size:13px; color:var(--ink-2); font-weight:400}
+.crono button[aria-expanded="false"] .det{display:none}
+.clock{display:flex; align-items:center; gap:12px; flex-wrap:wrap; border-top:1px dashed var(--rule-2); padding-top:10px}
+.clock .v{font-family:var(--mono); font-size:28px; font-weight:700; font-variant-numeric:tabular-nums}
+.clock .v.over{color:var(--rojo)}
+.clock .l{flex:1; min-width:120px; font-size:12.5px; color:var(--muted)}
+
+/* tribunal */
+.trib{background:var(--panel); border:1px solid var(--rule); border-top:6px solid var(--rojo); padding:18px 20px; display:grid; gap:18px; min-width:0}
+.trib .hd{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:baseline}
+.trib .hd b{font-size:15px}
+.stamp{font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rojo); border:1.5px solid var(--rojo); padding:2px 8px; border-radius:4px}
+.trib ul{margin:0; padding-left:18px} .trib li{margin-bottom:4px; color:var(--ink-2)}
+.qg h4{margin:10px 0 4px; font-size:12.5px; color:var(--ink)}
+.qg h4 span{font-family:var(--mono); color:var(--muted); font-weight:500}
+.qg ol{margin:0; padding-left:22px} .qg li{margin-bottom:6px; color:var(--ink-2); font-family:var(--serif); font-size:15px}
+.art{background:var(--card); border-left:4px solid var(--c); padding:10px 12px; font-family:var(--serif); font-size:15px}
+.art small{display:block; font-family:var(--sans); font-size:11.5px; color:var(--muted); margin-top:6px}
+.key{background:var(--card); border:1px dashed var(--rule-2); padding:10px 12px; font-size:13.5px; color:var(--ink-2); font-variant-numeric:tabular-nums}
+.key small{display:block; color:var(--muted); font-size:11.5px; margin-top:6px}
+.rub{display:grid; gap:8px}
+.crit{background:var(--card); border:1px solid var(--rule)}
+.crit .ch{display:flex; gap:10px; padding:8px 12px; align-items:center; border-bottom:1px solid var(--rule)}
+.crit .ch b{flex:1; font-size:13.5px}
+.crit .ch span{font-family:var(--mono); font-size:12px; color:var(--muted)}
+.crit .ch strong{font-family:var(--mono); font-size:15px; min-width:36px; text-align:right}
+.lv{display:grid; grid-template-columns:repeat(3,minmax(0,1fr))}
+.lv button{border:0; border-right:1px solid var(--rule); background:var(--card); text-align:left; padding:9px 11px; color:var(--ink-2); font-size:12.5px; line-height:1.4}
+.lv button:last-child{border-right:0}
+.lv button small{display:block; font-weight:700; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:3px}
+.lv button[aria-pressed="true"]{background:var(--piz-soft); color:var(--ink)}
+.lv button[aria-pressed="true"] small{color:var(--ink)}
+.total{display:flex; align-items:baseline; gap:10px; border-top:2px solid var(--ink); padding-top:10px; flex-wrap:wrap}
+.total .v{font-family:var(--mono); font-size:30px; font-weight:700}
+.total .l{flex:1; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.linkbtn{border:0; background:none; color:var(--muted); text-decoration:underline; font-size:12.5px; padding:0}
+.paneswitch{display:none; margin-bottom:12px}
+footer{border-top:1px solid var(--rule); margin-top:40px; padding-top:16px; font-size:12px; color:var(--muted)}
+
+@media (max-width:1000px){
+  .mesa{grid-template-columns:1fr}
+  .paneswitch{display:inline-flex}
+  .mesa[data-pane="est"] .trib{display:none}
+  .mesa[data-pane="trib"] .estcol{display:none}
+}
+@media (max-width:560px){
+  .wrap{padding-inline:16px}
+  .boxes{grid-template-columns:1fr}
+  .lv{grid-template-columns:1fr} .lv button{border-right:0; border-bottom:1px solid var(--rule)}
+  .tcard .body{padding:14px}
+  .steps-list li{grid-template-columns:26px 1fr}
+  .steps-list .d{grid-column:2}
+}
+</style>
+</head>
+<body>
+
+
+<header class="band">
+  <div class="wrap">
+    <div class="inst">Universidad Tecnológica Nacional · Facultad Regional San Rafael · Departamento de Materias Básicas</div>
+    <h1><small>Análisis Matemático I</small>Examen Final Oral</h1>
+    <nav class="views" role="tablist" aria-label="Vistas">
+      <button role="tab" id="tab-proy" aria-selected="true" data-v="proy">El protocolo</button>
+      <button role="tab" id="tab-mesa" aria-selected="false" data-v="mesa">Mesa de examen</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<section id="v-proy" class="proj" role="tabpanel" aria-labelledby="tab-proy">
+  <p class="lede">El estudiante extrae una tarjeta con una <b>consigna</b> —un problema aplicado o una consigna matemática— y un <b>resultado teórico</b> que debe enunciar y fundamentar. El tribunal conduce la entrevista con preguntas escritas de antemano y califica con una rúbrica única de 10 puntos.</p>
+
+  <section class="sec">
+    <h2>Criterios de diseño</h2>
+    <div class="boxes">
+      <div class="box"><b>Coherencia con la enseñanza</b><span>Las consignas tienen el formato y el nivel de los talleres de la cátedra.</span></div>
+      <div class="box"><b>Fundamentación teórica</b><span>Cada tarjeta exige enunciar y justificar un teorema o una definición vinculados con la consigna.</span></div>
+      <div class="box"><b>Equidad y cobertura</b><span>Estructura, rúbrica y preguntas comunes; seis tarjetas por eje y ocho tarjetas rojas por carrera.</span></div>
+      <div class="box"><b>Viabilidad</b><span>Entre 11 y 13 minutos por estudiante, sin contar la deliberación.</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Procedimiento</h2>
+    <div class="timeline" aria-hidden="true"><i style="flex:3">3′</i><i style="flex:6">5–7′</i><i style="flex:3">3′</i></div>
+    <ol class="steps-list" id="steps-proy"></ol>
+    <p class="note">Durante todo el examen se pueden usar calculadora, tablas, Mathematica y GeoGebra.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Banco de tarjetas</h2>
+    <p>66 tarjetas: 42 generales, seis por eje, y 24 tarjetas rojas de especialidad, ocho por carrera, que integran dos o tres ejes. Cada estudiante extrae de un bolillero de 50: las generales y las rojas de su carrera.</p>
+    <div class="comp" id="comp"></div>
+  </section>
+
+  <section class="sec">
+    <h2>Rúbrica</h2>
+    <div class="tablewrap"><table class="rubt" id="rubt"></table></div>
+  </section>
+
+  <p><button class="cta" id="go-mesa">Abrir la mesa de examen →</button></p>
+  <p class="note">Borrador para revisión de la cátedra. Las claves de resolución son valores de referencia para el tribunal y no se entregan al estudiante.</p>
+</section>
+
+<section id="v-mesa" role="tabpanel" aria-labelledby="tab-mesa" hidden>
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Carrera del estudiante" id="carreras"></div>
+    <button class="btn primary" id="extraer">Extraer tarjeta</button>
+    <button class="btn" id="ver-banco" aria-pressed="false">Ver banco completo</button>
+    <span class="sp"></span>
+    <span class="pool" id="pool"></span>
+  </div>
+  <div class="banco" id="banco" hidden></div>
+
+  <div class="seg paneswitch" role="group" aria-label="Vista">
+    <button aria-pressed="true" data-p="est">Estudiante</button>
+    <button aria-pressed="false" data-p="trib">Tribunal</button>
+  </div>
+
+  <div class="mesa" id="mesa" data-pane="est">
+    <div class="estcol">
+      <p class="lab">Lo que recibe el estudiante</p>
+      <article class="tcard" id="tcard">
+        <div class="side"><span id="tc-side"></span></div>
+        <div class="body">
+          <div class="top"><span class="code" id="tc-code"></span><span class="meta" id="tc-meta"></span></div>
+          <h2 id="tc-title"></h2>
+          <p class="cons" id="tc-cons"></p>
+          <div class="teo"><small>Resultado teórico a fundamentar</small><span id="tc-teo"></span></div>
+          <div class="temas" id="tc-temas"></div>
+        </div>
+      </article>
+      <div class="crono">
+        <p class="lab">Tiempos del examen</p>
+        <ol id="crono"></ol>
+        <div class="clock" id="clock"><span class="v" id="clk">03:00</span><span class="l" id="clk-l">Preparación</span>
+          <button class="btn" id="clk-go">Iniciar</button><button class="btn" id="clk-re">Reiniciar</button></div>
+      </div>
+    </div>
+
+    <aside class="trib">
+      <div class="hd"><b>Panel del tribunal</b><span class="stamp">No se entrega</span></div>
+      <div><p class="lab">Capacidades a verificar</p><ul id="tr-cap"></ul></div>
+      <div class="qg"><p class="lab">Preguntas guía — Paso 3</p><div id="tr-q"></div></div>
+      <div><p class="lab">Pregunta de articulación — Paso 4</p><div class="art" id="tr-art"></div></div>
+      <div><p class="lab">Clave de resolución</p><div class="key" id="tr-key"></div></div>
+      <div>
+        <p class="lab">Rúbrica — Ficha FEO-AM1</p>
+        <div class="rub" id="rub"></div>
+        <div class="total" style="margin-top:12px"><span class="l">Nota</span><span class="v" id="tot">—</span><span>/ 10</span><button class="linkbtn" id="limpiar">Limpiar</button></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer>UTN Facultad Regional San Rafael · Departamento de Materias Básicas · Análisis Matemático I · Examen Final Oral — versión 1.0, borrador para revisión de la cátedra.</footer>
+</main>
+
+<script src="cards.js"></script>
+<script>
+(function(){
+"use strict";
+const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const fmt=v=>String(v).replace(".",",");
+const byId=id=>TARJETAS.find(t=>t.id===id);
+const G=t=>t.eje;
+let carrera="CIV", actual=byId("AM-20"), paso=2, scores={};
+try{ const c=localStorage.getItem("am1-car"); if(c && CARRERAS[c]) carrera=c; }catch(e){}
+
+/* protocolo */
+$("#steps-proy").innerHTML=PROTOCOLO.map(p=>`<li><span class="n">${p.paso}</span><span><b>${esc(p.titulo)}</b><span>${esc(p.estudiante)}</span></span><span class="d">${esc(p.durTexto)}</span></li>`).join("");
+$("#comp").innerHTML=Object.entries(EJES).map(([k,e])=>`<div data-g="${k}"><small>EJE ${k} · ${TARJETAS.filter(t=>t.eje===k).length} TARJETAS</small><b>${esc(e.nombre)}</b><em>${esc(e.temas_plan)}</em></div>`).join("")
+ + Object.entries(CARRERAS).map(([k,c])=>`<div data-g="R"><small>${c.pref} · 8 TARJETAS ROJAS</small><b>${esc(c.nombre)}</b><em>Integran dos o tres ejes</em></div>`).join("");
+$("#rubt").innerHTML=`<thead><tr><th>Criterio</th><th>Máx.</th><th>Logrado</th><th>Parcialmente logrado</th><th>No logrado</th></tr></thead><tbody>`+
+ RUBRICA.map(c=>`<tr><td>${esc(c.criterio)}</td><td class="n">${c.puntaje}</td><td class="n">${fmt(c.puntaje)}</td><td class="n">${fmt(c.puntaje/2)}</td><td class="n">0</td></tr>`).join("")+`</tbody>`;
+
+/* carreras y banco */
+$("#carreras").innerHTML=Object.entries(CARRERAS).map(([k,c])=>`<button data-c="${k}" aria-pressed="${k===carrera}">${esc(c.corto)}</button>`).join("");
+$("#carreras").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; carrera=b.dataset.c;
+  try{localStorage.setItem("am1-car",carrera)}catch(err){}
+  $$("#carreras button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); pintarPool();});
+function pintarPool(){ $("#pool").textContent=`Bolillero de ${CARRERAS[carrera].corto}: 42 generales + 8 rojas = 50 tarjetas`; }
+pintarPool();
+const grupos=[...Object.keys(EJES).map(k=>({g:k, t:`Eje ${k} · ${EJES[k].nombre}`, ts:TARJETAS.filter(x=>x.eje===k)})),
+  ...Object.entries(CARRERAS).map(([k,c])=>({g:"R", t:`Tarjetas rojas · ${c.nombre}`, ts:TARJETAS.filter(x=>x.carrera===k)}))];
+$("#banco").innerHTML=grupos.map(g=>`<div class="grp" data-g="${g.g}"><h3>${esc(g.t)}</h3><div class="chips">${g.ts.map(t=>`<button class="chip" data-g="${g.g}" data-id="${t.id}" aria-current="false"><code>${t.id}</code>${esc(t.titulo)}</button>`).join("")}</div></div>`).join("");
+$("#banco").addEventListener("click",e=>{const b=e.target.closest(".chip"); if(b) elegir(b.dataset.id);});
+$("#ver-banco").addEventListener("click",e=>{const on=e.currentTarget.getAttribute("aria-pressed")==="true"; e.currentTarget.setAttribute("aria-pressed",String(!on)); $("#banco").hidden=on;});
+$("#extraer").addEventListener("click",()=>{const pool=TARJETAS.filter(t=>t.eje!=="R"||t.carrera===carrera); let t; do{t=pool[Math.floor(Math.random()*pool.length)]}while(pool.length>1&&t.id===actual.id); elegir(t.id);});
+
+/* cronograma */
+function pintarCrono(){
+  $("#crono").innerHTML=PROTOCOLO.map(p=>`<li><button data-p="${p.paso}" aria-expanded="${p.paso===paso}"><span class="n">${p.paso}</span><span class="t">${esc(p.titulo)}</span><span class="dd">${esc(p.durTexto)}</span><span class="det">${esc(p.estudiante)}</span></button></li>`).join("");
+}
+$("#crono").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; paso=+b.dataset.p; pintarCrono(); prepClock();});
+let rest=180, run=false, h=null;
+const mmss=s=>{const n=s<0,a=Math.abs(s);return (n?"+":"")+String(Math.floor(a/60)).padStart(2,"0")+":"+String(a%60).padStart(2,"0")};
+function draw(){const v=$("#clk"); v.textContent=mmss(rest); v.classList.toggle("over",rest<0);}
+function stop(){run=false; clearInterval(h); $("#clk-go").textContent="Iniciar";}
+function prepClock(){stop(); const p=PROTOCOLO.find(x=>x.paso===paso); $("#clock").hidden=!p.dur; if(!p.dur) return; rest=p.dur; $("#clk-l").textContent=p.titulo; draw();}
+$("#clk-go").addEventListener("click",()=>{ if(run){stop();return;} run=true; $("#clk-go").textContent="Pausar"; h=setInterval(()=>{rest--; draw();},1000); });
+$("#clk-re").addEventListener("click",prepClock);
+
+/* rúbrica */
+function pintarRub(){
+  $("#rub").innerHTML=RUBRICA.map(c=>{const s=scores[c.id];
+    return `<div class="crit" data-c="${c.id}"><div class="ch"><b>${esc(c.criterio)}</b><span>máx. ${c.puntaje}</span><strong>${s?fmt(s.v):"—"}</strong></div>
+    <div class="lv">${NIVELES.map(n=>`<button data-n="${n.id}" aria-pressed="${!!(s&&s.n===n.id)}"><small>${esc(n.nombre)} · ${fmt(c.puntaje*n.factor)}</small>${esc(c[n.id])}</button>`).join("")}</div></div>`;}).join("");
+  const k=Object.values(scores); $("#tot").textContent=k.length?fmt(k.reduce((a,s)=>a+s.v,0)):"—";
+}
+$("#rub").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; const id=b.closest(".crit").dataset.c, n=b.dataset.n;
+  const c=RUBRICA.find(x=>x.id===id), f=NIVELES.find(x=>x.id===n).factor;
+  if(scores[id]&&scores[id].n===n) delete scores[id]; else scores[id]={n, v:c.puntaje*f}; pintarRub();});
+$("#limpiar").addEventListener("click",()=>{scores={}; pintarRub();});
+
+/* tarjeta */
+function elegir(id){actual=byId(id)||actual; scores={}; paso=2; render();}
+function render(){
+  const t=actual, g=G(t), roja=g==="R";
+  $("#tcard").setAttribute("data-g",g); $("#tcard").classList.toggle("roja",roja);
+  $(".trib").setAttribute("data-g",g);
+  $("#tc-side").textContent=roja?`ROJA · ${CARRERAS[t.carrera].corto.toUpperCase()}`:`EJE ${g}`;
+  $("#tc-code").textContent=t.id;
+  $("#tc-meta").innerHTML=roja?`Tarjeta roja · ${esc(CARRERAS[t.carrera].nombre)}<br><em>Integra ejes ${t.integra.join(", ")}</em>`:`Eje ${g} · ${esc(EJES[g].nombre)}<br><em>${esc(t.tipo)}</em>`;
+  $("#tc-title").textContent=t.titulo;
+  $("#tc-cons").textContent=t.consigna;
+  $("#tc-teo").innerHTML=`<b>${esc(t.teorema.nombre)}.</b> ${esc(t.teorema.consigna)}`;
+  $("#tc-temas").textContent="Temas: "+t.temas.join(" · ");
+  $("#tr-cap").innerHTML=t.capacidades.map(x=>`<li>${esc(x)}</li>`).join("");
+  let n=0; $("#tr-q").innerHTML=RUBRICA.map(c=>{const qs=t.preguntas.filter(q=>q.c===c.id); if(!qs.length) return "";
+    return `<h4>${esc(c.criterio)} <span>· ${c.puntaje} ${c.puntaje>1?"puntos":"punto"}</span></h4><ol start="${n+1}">${qs.map(q=>{n++; return `<li>${esc(q.t)}</li>`}).join("")}</ol>`;}).join("");
+  const ae=EJES[t.articulacion.eje];
+  $("#tr-art").setAttribute("data-g",t.articulacion.eje);
+  $("#tr-art").innerHTML=`${esc(t.articulacion.t)}<small>Procede del eje ${t.articulacion.eje} · ${esc(ae.nombre)}</small>`;
+  $("#tr-key").innerHTML=esc(t.clave)+(t.ref?`<small>Referencia: ${esc(t.ref)}</small>`:"");
+  $$(".chip").forEach(c=>c.setAttribute("aria-current",String(c.dataset.id===t.id)));
+  pintarCrono(); prepClock(); pintarRub();
+}
+
+/* vistas */
+function ver(v,save){const m=v==="mesa"; $("#v-proy").hidden=m; $("#v-mesa").hidden=!m;
+  $$(".views button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.v===v)));
+  if(save){try{localStorage.setItem("am1-vista",v)}catch(e){} try{history.replaceState(null,"","#"+v)}catch(e){}}}
+$$(".views button").forEach(b=>b.addEventListener("click",()=>ver(b.dataset.v,true)));
+$("#go-mesa").addEventListener("click",()=>{ver("mesa",true); window.scrollTo({top:0,behavior:"smooth"});});
+$$(".paneswitch button").forEach(b=>b.addEventListener("click",()=>{$$(".paneswitch button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); $("#mesa").dataset.pane=b.dataset.p;}));
+let ini="proy"; const hs=(location.hash||"").slice(1);
+if(hs==="proy"||hs==="mesa") ini=hs; else {try{const s=localStorage.getItem("am1-vista"); if(s==="proy"||s==="mesa") ini=s;}catch(e){}}
+ver(ini,false);
+render();
+})();
+</script>
+
+</body>
+</html>
