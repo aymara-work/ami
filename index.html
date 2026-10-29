@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Protocolo y Banco de Tarjetas del Examen Final Oral Integrador de Análisis Matemático I. UTN Facultad Regional San Rafael, Departamento de Materias Básicas.">
 <title>Examen Oral de Análisis I</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
@@ -52,7 +53,8 @@ button{font:inherit; cursor:pointer}
 main.wrap{padding-block:28px 60px}
 
 /* proyecto */
-.proj{max-width:860px; display:grid; gap:34px}
+[hidden]{display:none !important}
+.proj{max-width:860px; display:grid; grid-template-columns:minmax(0,1fr); gap:34px}
 .lede{font-family:var(--serif); font-size:clamp(19px,2.4vw,22px); line-height:1.5; margin:0; background:var(--card); padding:22px 24px; border-left:5px solid var(--piz); text-wrap:pretty}
 .sec h2{font-family:var(--sans); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--piz); margin:0 0 12px}
 :root[data-theme="dark"] .sec h2{color:var(--focus)}
@@ -84,6 +86,19 @@ main.wrap{padding-block:28px 60px}
 .rubt td.n{font-family:var(--mono); text-align:center; font-variant-numeric:tabular-nums}
 .tablewrap{overflow-x:auto}
 .cta{display:inline-flex; align-items:center; gap:8px; background:var(--piz); color:var(--piz-ink); border:0; padding:12px 20px; border-radius:6px; font-weight:600}
+.doc{background:var(--card); border:1px solid var(--rule); border-top:5px solid var(--piz); padding:26px 28px; display:grid; grid-template-columns:minmax(0,1fr); gap:26px; min-width:0}
+.doc-k{margin:0; font-family:var(--sans); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.doc-t{font-family:var(--serif); font-size:clamp(21px,2.8vw,26px); line-height:1.25; margin:-18px 0 0; text-wrap:balance}
+.doc-dat{margin:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border:1px solid var(--rule)}
+.doc-dat div{padding:9px 12px; border-bottom:1px solid var(--rule); min-width:0}
+.doc-dat div:nth-child(odd){border-right:1px solid var(--rule)}
+.doc-dat dt{font-size:11.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em}
+.doc-dat dd{margin:2px 0 0; font-size:14px}
+.doc .sec h3{font-family:var(--serif); font-size:16.5px; margin:16px 0 6px}
+.doc .sec p{font-family:var(--serif); font-size:16px; line-height:1.6}
+.doc .steps-list li, .doc .rubt{background:var(--sunk)}
+.rubt td{vertical-align:top}
+@media (max-width:640px){.doc{padding:18px 16px} .doc-dat{grid-template-columns:1fr} .doc-dat div:nth-child(odd){border-right:0}}
 .note{font-size:13px; color:var(--muted); max-width:70ch}
 
 /* mesa */
@@ -184,12 +199,10 @@ footer{border-top:1px solid var(--rule); margin-top:40px; padding-top:16px; font
 </style>
 </head>
 <body>
-
-
 <header class="band">
   <div class="wrap">
     <div class="inst">Universidad Tecnológica Nacional · Facultad Regional San Rafael · Departamento de Materias Básicas</div>
-    <h1><small>Análisis Matemático I</small>Examen Final Oral</h1>
+    <h1><small>Análisis Matemático I</small>Examen Final Oral Integrador</h1>
     <nav class="views" role="tablist" aria-label="Vistas">
       <button role="tab" id="tab-proy" aria-selected="true" data-v="proy">El protocolo</button>
       <button role="tab" id="tab-mesa" aria-selected="false" data-v="mesa">Mesa de examen</button>
@@ -199,34 +212,59 @@ footer{border-top:1px solid var(--rule); margin-top:40px; padding-top:16px; font
 
 <main class="wrap">
 <section id="v-proy" class="proj" role="tabpanel" aria-labelledby="tab-proy">
-  <p class="lede">El estudiante extrae una tarjeta con una <b>consigna</b> —un problema aplicado o una consigna matemática— y un <b>resultado teórico</b> que debe enunciar y fundamentar. El tribunal conduce la entrevista con preguntas escritas de antemano y califica con una rúbrica única de 10 puntos.</p>
+  <p class="lede">El estudiante extrae una tarjeta con una <b>situación problema</b> y un <b>resultado teórico</b> que debe enunciar y fundamentar. El tribunal conduce una entrevista estructurada con preguntas escritas de antemano, formula una pregunta integradora de otro eje y califica con una rúbrica única de 10 puntos.</p>
+
+  <article class="doc" aria-labelledby="doc-t">
+    <p class="doc-k">Consejo Departamental de Materias Básicas · Cátedra de Análisis Matemático I</p>
+    <h2 class="doc-t" id="doc-t">Reglamento y banco de tarjetas para el Examen Final Oral Integrador</h2>
+    <dl class="doc-dat">
+      <div><dt>Asignatura</dt><dd>Análisis Matemático I (carreras de Ingeniería)</dd></div>
+      <div><dt>Asunto principal</dt><dd>Aprobación del reglamento y del banco oficial de tarjetas situadas</dd></div>
+      <div><dt>Población destinataria</dt><dd>Estudiantes en condición de regularidad</dd></div>
+      <div><dt>Tiempos operativos</dt><dd>10 min de organización + 5 a 10 min de entrevista estructurada</dd></div>
+    </dl>
+
+    <section class="sec">
+      <h2>1. Marco institucional y fundamentación académica</h2>
+      <p>El presente proyecto institucional establece la normativa, el procedimiento operativo y el banco de instrumentos de evaluación para el Examen Final Oral Integrador de la asignatura Análisis Matemático I en las carreras de Ingeniería de la Universidad Tecnológica Nacional. Este marco reglamentario se fundamenta en la necesidad de transformar el examen oral en una instancia de aprendizaje significativo y evaluación por competencias, alineada con las exigencias de la formación profesional en ingeniería.</p>
+      <h3>1.1. Revalorización de la condición de regularidad</h3>
+      <p>La condición de estudiante regular certifica que el alumno ha acreditado previamente las competencias prácticas de resolución analítica, cálculo algorítmico y destreza operativa durante el cursado lectivo. En consecuencia, la instancia de examen final no debe limitarse a reiterar ejercicios de cálculo repetitivo ni a exigir pruebas escritas de filtro algorítmico. Por el contrario, el examen oral para alumnos regulares se enfoca prioritariamente en la fundamentación teórica, la deducción formal de teoremas, la capacidad de modelización matemática y la integración de contenidos del programa sintético de la materia.</p>
+      <h3>1.2. Eliminación del azar irrestricto y sustitución por tarjetas situadas</h3>
+      <p>Se reemplazan las modalidades tradicionales de tema al azar del programa o de examen consensuado entre los profesores por un Banco Oficial de Tarjetas con Situaciones Problema. Las tarjetas presentan casos contextualizados en distintas disciplinas de la ingeniería (mecánica, química, eléctrica, sistemas, civil, entre otras). Este enfoque estructurado elimina la arbitrariedad en la toma de exámenes, garantiza la equidad entre mesas evaluadoras y permite medir la habilidad del estudiante para articular herramientas analíticas con aplicaciones prácticas.</p>
+      <h3>1.3. Viabilidad operativa y tiempos de exposición</h3>
+      <p>Para garantizar la fluidez en mesas de alta concurrencia de estudiantes sin sacrificar el rigor académico, el protocolo estandariza de forma precisa los tiempos dedicados a la instancia de organización previa y a la defensa ante el tribunal evaluador, lo que permite un flujo continuo y eficiente de alumnos.</p>
+    </section>
+
+    <section class="sec">
+      <h2>2. Estructura y procedimiento operativo del examen</h2>
+      <p>El examen oral integrador se desarrolla bajo una secuencia obligatoria estructurada en cinco etapas:</p>
+      <div class="timeline" aria-hidden="true"><i style="flex:10">Organización · 10′</i><i style="flex:8">Entrevista · 5–10′</i><i style="flex:3">Integradora</i></div>
+      <ol class="steps-list" id="steps-proy"></ol>
+      <p class="note">Durante todo el examen se pueden usar calculadora, tablas, Mathematica y GeoGebra.</p>
+    </section>
+
+    <section class="sec">
+      <h2>3. Sistema de calificación y rúbrica institucional</h2>
+      <p>La evaluación se rige por una rúbrica analítica cuali-cuantitativa de diez (10) puntos distribuidos en cuatro dimensiones fundamentales:</p>
+      <div class="tablewrap"><table class="rubt" id="rubt"></table></div>
+      <p class="note" style="margin-top:10px">En la mesa, cada criterio se califica en tres niveles: Logrado (puntaje completo), Parcialmente logrado (la mitad) y No logrado (cero). El resultado se asienta en la Ficha Individual de Evaluación FI-AM1-01.</p>
+    </section>
+  </article>
 
   <section class="sec">
     <h2>Criterios de diseño</h2>
     <div class="boxes">
       <div class="box"><b>Coherencia con la enseñanza</b><span>Las consignas tienen el formato y el nivel de los talleres de la cátedra.</span></div>
       <div class="box"><b>Fundamentación teórica</b><span>Cada tarjeta exige enunciar y justificar un teorema o una definición vinculados con la consigna.</span></div>
-      <div class="box"><b>Equidad y cobertura</b><span>Estructura, rúbrica y preguntas comunes; seis tarjetas por eje y ocho tarjetas rojas por carrera.</span></div>
-      <div class="box"><b>Viabilidad</b><span>Entre 11 y 13 minutos por estudiante, sin contar la deliberación.</span></div>
+      <div class="box"><b>Equidad y cobertura</b><span>Estructura, rúbrica y preguntas comunes; entre siete y once tarjetas por eje y ocho tarjetas rojas por carrera.</span></div>
+      <div class="box"><b>Viabilidad</b><span>10 minutos de organización y 5 a 10 de entrevista por estudiante, más la pregunta integradora.</span></div>
     </div>
   </section>
 
   <section class="sec">
-    <h2>Procedimiento</h2>
-    <div class="timeline" aria-hidden="true"><i style="flex:3">3′</i><i style="flex:6">5–7′</i><i style="flex:3">3′</i></div>
-    <ol class="steps-list" id="steps-proy"></ol>
-    <p class="note">Durante todo el examen se pueden usar calculadora, tablas, Mathematica y GeoGebra.</p>
-  </section>
-
-  <section class="sec">
     <h2>Banco de tarjetas</h2>
-    <p>66 tarjetas: 42 generales, seis por eje, y 24 tarjetas rojas de especialidad, ocho por carrera, que integran dos o tres ejes. Cada estudiante extrae de un bolillero de 50: las generales y las rojas de su carrera.</p>
+    <p id="banco-txt"></p>
     <div class="comp" id="comp"></div>
-  </section>
-
-  <section class="sec">
-    <h2>Rúbrica</h2>
-    <div class="tablewrap"><table class="rubt" id="rubt"></table></div>
   </section>
 
   <p><button class="cta" id="go-mesa">Abrir la mesa de examen →</button></p>
@@ -236,7 +274,7 @@ footer{border-top:1px solid var(--rule); margin-top:40px; padding-top:16px; font
 <section id="v-mesa" role="tabpanel" aria-labelledby="tab-mesa" hidden>
   <div class="bar">
     <div class="seg" role="group" aria-label="Carrera del estudiante" id="carreras"></div>
-    <button class="btn primary" id="extraer">Extraer tarjeta</button>
+    <button class="btn primary" id="extraer">Sortear tarjeta</button>
     <button class="btn" id="ver-banco" aria-pressed="false">Ver banco completo</button>
     <span class="sp"></span>
     <span class="pool" id="pool"></span>
@@ -264,7 +302,7 @@ footer{border-top:1px solid var(--rule); margin-top:40px; padding-top:16px; font
       <div class="crono">
         <p class="lab">Tiempos del examen</p>
         <ol id="crono"></ol>
-        <div class="clock" id="clock"><span class="v" id="clk">03:00</span><span class="l" id="clk-l">Preparación</span>
+        <div class="clock" id="clock"><span class="v" id="clk">10:00</span><span class="l" id="clk-l">Tiempo de organización</span>
           <button class="btn" id="clk-go">Iniciar</button><button class="btn" id="clk-re">Reiniciar</button></div>
       </div>
     </div>
@@ -273,10 +311,10 @@ footer{border-top:1px solid var(--rule); margin-top:40px; padding-top:16px; font
       <div class="hd"><b>Panel del tribunal</b><span class="stamp">No se entrega</span></div>
       <div><p class="lab">Capacidades a verificar</p><ul id="tr-cap"></ul></div>
       <div class="qg"><p class="lab">Preguntas guía — Paso 3</p><div id="tr-q"></div></div>
-      <div><p class="lab">Pregunta de articulación — Paso 4</p><div class="art" id="tr-art"></div></div>
+      <div><p class="lab">Pregunta integradora — Paso 4</p><div class="art" id="tr-art"></div></div>
       <div><p class="lab">Clave de resolución</p><div class="key" id="tr-key"></div></div>
       <div>
-        <p class="lab">Rúbrica — Ficha FEO-AM1</p>
+        <p class="lab">Rúbrica — Ficha FI-AM1-01</p>
         <div class="rub" id="rub"></div>
         <div class="total" style="margin-top:12px"><span class="l">Nota</span><span class="v" id="tot">—</span><span>/ 10</span><button class="linkbtn" id="limpiar">Limpiar</button></div>
       </div>
@@ -284,7 +322,7 @@ footer{border-top:1px solid var(--rule); margin-top:40px; padding-top:16px; font
   </div>
 </section>
 
-<footer>UTN Facultad Regional San Rafael · Departamento de Materias Básicas · Análisis Matemático I · Examen Final Oral — versión 1.0, borrador para revisión de la cátedra.</footer>
+<footer>UTN Facultad Regional San Rafael · Departamento de Materias Básicas · Análisis Matemático I · Examen Final Oral Integrador — versión 1.2, borrador para revisión de la cátedra.</footer>
 </main>
 
 <script src="cards.js"></script>
@@ -300,18 +338,25 @@ let carrera="CIV", actual=byId("AM-20"), paso=2, scores={};
 try{ const c=localStorage.getItem("am1-car"); if(c && CARRERAS[c]) carrera=c; }catch(e){}
 
 /* protocolo */
-$("#steps-proy").innerHTML=PROTOCOLO.map(p=>`<li><span class="n">${p.paso}</span><span><b>${esc(p.titulo)}</b><span>${esc(p.estudiante)}</span></span><span class="d">${esc(p.durTexto)}</span></li>`).join("");
+const PASOS_TXT={1:"El estudiante se presenta ante el tribunal evaluador, acredita su identidad y extrae una tarjeta al azar del Banco Oficial de Evaluación.",
+ 2:"El alumno se traslada a un banco o mesa auxiliar de preparación donde dispone de diez (10) minutos cronometrados para analizar el problema planteado en la tarjeta, esbozar hipótesis, desarrollar deducciones teóricas, graficar en papel borrador y estructurar el esquema conceptual de su exposición oral.",
+ 3:"El estudiante expone ante el tribunal la solución analítica y la fundamentación teórica de su tarjeta durante un lapso de entre cinco (5) y diez (10) minutos. El tribunal evalúa la claridad sintáctica, el rigor en el uso de la simbología, la precisión de las demostraciones y el correcto manejo del cálculo diferencial e integral en el pizarrón.",
+ 4:"Finalizada la exposición de la tarjeta, el tribunal formula al menos una (1) pregunta conceptual cruzada que vincula el tema expuesto con un eje temático diferente del programa analítico (por ejemplo, relacionando un problema de optimización diferencial con la convergencia de una serie de Taylor o la resolución de una EDO).",
+ 5:"El tribunal delibera, consigna las puntuaciones en la Rúbrica Institucional y asienta el resultado en la Ficha Individual de Evaluación (código FI-AM1-01), procediendo a la firma del acta."};
+$("#steps-proy").innerHTML=PROTOCOLO.map(p=>`<li><span class="n">${p.paso}</span><span><b>${esc(p.titulo)}</b><span>${esc(PASOS_TXT[p.paso]||p.estudiante)}</span></span><span class="d">${esc(p.durTexto)}</span></li>`).join("");
+const NGEN=TARJETAS.filter(t=>t.eje!=="R").length, NROJ=TARJETAS.length-NGEN;
+$("#banco-txt").textContent=`${TARJETAS.length} tarjetas: ${NGEN} generales, agrupadas en los siete ejes del programa, y ${NROJ} tarjetas rojas de especialidad, ocho por carrera, que integran dos o tres ejes. Cada estudiante extrae del banco de su carrera: ${NGEN} generales y 8 rojas, ${NGEN+8} tarjetas. En todas las tarjetas la consigna exige derivar e integrar, y las preguntas guía profundizan en ambas operaciones.`;
 $("#comp").innerHTML=Object.entries(EJES).map(([k,e])=>`<div data-g="${k}"><small>EJE ${k} · ${TARJETAS.filter(t=>t.eje===k).length} TARJETAS</small><b>${esc(e.nombre)}</b><em>${esc(e.temas_plan)}</em></div>`).join("")
  + Object.entries(CARRERAS).map(([k,c])=>`<div data-g="R"><small>${c.pref} · 8 TARJETAS ROJAS</small><b>${esc(c.nombre)}</b><em>Integran dos o tres ejes</em></div>`).join("");
-$("#rubt").innerHTML=`<thead><tr><th>Criterio</th><th>Máx.</th><th>Logrado</th><th>Parcialmente logrado</th><th>No logrado</th></tr></thead><tbody>`+
- RUBRICA.map(c=>`<tr><td>${esc(c.criterio)}</td><td class="n">${c.puntaje}</td><td class="n">${fmt(c.puntaje)}</td><td class="n">${fmt(c.puntaje/2)}</td><td class="n">0</td></tr>`).join("")+`</tbody>`;
+$("#rubt").innerHTML=`<thead><tr><th>Criterio de evaluación</th><th>Puntaje máx.</th><th>Nivel excelente / adecuado</th><th>Nivel insuficiente</th></tr></thead><tbody>`+
+ RUBRICA.map(c=>`<tr><td><b>${esc(c.criterio)}</b></td><td class="n">${c.puntaje}</td><td>${esc(c.logrado)}</td><td>${esc(c.nologrado)}</td></tr>`).join("")+`</tbody>`;
 
 /* carreras y banco */
 $("#carreras").innerHTML=Object.entries(CARRERAS).map(([k,c])=>`<button data-c="${k}" aria-pressed="${k===carrera}">${esc(c.corto)}</button>`).join("");
 $("#carreras").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; carrera=b.dataset.c;
   try{localStorage.setItem("am1-car",carrera)}catch(err){}
   $$("#carreras button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); pintarPool();});
-function pintarPool(){ $("#pool").textContent=`Bolillero de ${CARRERAS[carrera].corto}: 42 generales + 8 rojas = 50 tarjetas`; }
+function pintarPool(){ const ng=TARJETAS.filter(t=>t.eje!=="R").length; $("#pool").textContent=`Banco de ${CARRERAS[carrera].corto}: ${ng} generales + 8 rojas = ${ng+8} tarjetas`; }
 pintarPool();
 const grupos=[...Object.keys(EJES).map(k=>({g:k, t:`Eje ${k} · ${EJES[k].nombre}`, ts:TARJETAS.filter(x=>x.eje===k)})),
   ...Object.entries(CARRERAS).map(([k,c])=>({g:"R", t:`Tarjetas rojas · ${c.nombre}`, ts:TARJETAS.filter(x=>x.carrera===k)}))];
@@ -325,7 +370,7 @@ function pintarCrono(){
   $("#crono").innerHTML=PROTOCOLO.map(p=>`<li><button data-p="${p.paso}" aria-expanded="${p.paso===paso}"><span class="n">${p.paso}</span><span class="t">${esc(p.titulo)}</span><span class="dd">${esc(p.durTexto)}</span><span class="det">${esc(p.estudiante)}</span></button></li>`).join("");
 }
 $("#crono").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; paso=+b.dataset.p; pintarCrono(); prepClock();});
-let rest=180, run=false, h=null;
+let rest=600, run=false, h=null;
 const mmss=s=>{const n=s<0,a=Math.abs(s);return (n?"+":"")+String(Math.floor(a/60)).padStart(2,"0")+":"+String(a%60).padStart(2,"0")};
 function draw(){const v=$("#clk"); v.textContent=mmss(rest); v.classList.toggle("over",rest<0);}
 function stop(){run=false; clearInterval(h); $("#clk-go").textContent="Iniciar";}
@@ -382,6 +427,5 @@ ver(ini,false);
 render();
 })();
 </script>
-
 </body>
 </html>
